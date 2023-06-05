@@ -1,0 +1,125 @@
+L6-1
+
+#include <stdio.h>
+void main() {
+	int *intPtr, info;
+	info = 5;
+	intPtr = &info;
+	printf("Value in info = %d\n", info);
+	printf("Value referred by *intPtr = %d\n", *intPtr);
+	//increment value of value at intptr by 5.
+	*intPtr=*intPtr+5;
+	printf("Value in info = %d\n", info);
+	printf("Value referred by *intPtr = %d\n", *intPtr);
+}
+
+L6-2
+
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+	int *p;
+	//complete the missing malloc() statement
+	p=(int*)malloc(sizeof(int));
+	//Also check if memory is allocated successfully or not.
+	if(p==NULL){
+		printf("Failed to allocate space for _ bytes\n");
+	}
+	//If not print "Failed to allocate space for _ bytes
+	*p = 15;
+	printf("Value with in heap memory = %d\n", *p);
+	free(p);
+	return 0;
+}
+
+
+L6-3
+
+void read(int*p,int n)
+{   printf("Enter %d elements : ",n);
+	for(int i=0;i<n;i++){
+		scanf("%d",(p+i));
+	}
+}
+void bubbleSort(int *p,int n){
+	for(int i=0;i<n-1;i++){
+		for(int j=0;j<n-i-1;j++){
+			if(*(p+j)>*(p+(j+1))){
+				int temp=*(p+j);
+				*(p+j)=*(p+(j+1));
+				*(p+(j+1))=temp;
+			}
+		}
+	}
+}
+void display(int *p,int n){
+	for(int i=0;i<n;i++){
+		printf("%d ",*(p+i));
+	}
+	printf("\n");
+}
+int binarySearch(int *p,int n,int k){
+	int s=0;
+	int e=n-1;
+	int mid;
+	while(s<=e){
+		mid=(s+e)/2;
+		if(*(p+mid)==k){
+			return mid;
+		}
+		else if(*(p+mid)<k){
+			s=mid+1;
+		}
+		else{
+			e=mid-1;
+		}
+	}
+	return -1;
+}
+
+
+L6-4
+
+void read(int *a,int m,int n){
+	printf("Enter %d elements : ",m*n);
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+		  scanf("%d",(a+i*n+j));
+		}
+	}
+}
+void display(int *a,int m,int n){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			printf("%d ",*(a+i*n+j));
+		}
+		printf("\n");
+	}
+}
+void multiplicationOfTwoMatrices(int *a,int *b,int m,int n,int q){
+	printf("The Multiplication Matrix is\n");
+	for(int i=0;i<m;i++){
+		for(int j=0;j<q;j++){
+			int sum=0;
+			for(int k=0;k<n;k++){
+				sum+=(*(a+i*n+k))*(*(b+q*k+j));
+			}
+			printf("%d ",sum);
+		}
+		printf("\n");
+	}
+}
+
+
+L6-5
+
+#include <stdio.h>
+void main() {
+	int **a, *b, c = 22;
+	b=&c;
+	a=&b;
+	// Do assignments such that all the next three lines print 22.
+	printf("Accessing through double pointer the given value = %d\n", **a);
+	printf("Accessing through single pointer the given value = %d\n", *b);
+	printf("The given value = %d\n", c);
+}

@@ -1,0 +1,62 @@
+L8-SLL
+
+L8-SLL-2
+
+struct node {
+	int data;
+	struct node *next;
+ };
+typedef struct node *NODE;
+
+NODE createNode() {
+   NODE temp;
+   temp=(NODE)malloc(sizeof(NODE));
+}
+
+L8-SLL-3
+
+struct node {
+	int data;
+	struct node *next;
+};
+typedef struct node *NODE;
+
+NODE createNode() {
+  NODE temp;
+  temp=(NODE)malloc(sizeof(NODE));
+  return temp;
+}
+
+NODE addNodes(NODE first, int x) {
+    NODE temp;
+    temp=createNode();
+    if(temp!=NULL){
+    	if(first==NULL){
+    		first=temp;
+    		temp->data=x;
+    		temp->next=NULL;
+    	}
+    	else{
+    		NODE t1=first;
+    		while(t1->next!=NULL){
+    			t1=t1->next;
+    		}
+    		t1->next=temp;
+    		temp->data=x;
+    		temp->next=NULL;
+    	}
+    }
+    return first;
+}
+
+void traverseList(NODE first) {
+    NODE temp;
+    temp=first;
+    while(temp!=NULL){
+    	printf("%d --> ",temp->data);
+    	temp=temp->next;
+    }
+    
+    printf("NULL\n");
+    
+}

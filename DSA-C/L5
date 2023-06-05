@@ -1,0 +1,60 @@
+L5-2
+
+int sumRecursive(int n){
+	if(n==0)
+	  return 0;
+	return n+sumRecursive(n-1);
+}
+
+L5-3
+
+int sumOfArrayElementsRecursive(int *arr,int n)
+{
+	if(n==0){
+		return 0;
+	}
+	return (*(arr+n-1))+sumOfArrayElementsRecursive(arr,n-1);
+}
+
+L5-4
+
+int fibonacciRecursive(int n)
+{
+	if(n==0||n==1){
+		return n;
+	}
+	return fibonacciRecursive(n-1)+fibonacciRecursive(n-2);
+}
+
+L5-5
+
+int gcdRecursive(int a,int b){
+	if(a%b==0){
+		return b;
+	}
+	return gcdRecursive(b,a%b);
+}
+
+L5-6
+
+int sumOfDigitsRecursive(int a){
+	if(a<=9){
+		return a;
+	}
+	if(a<0){
+		a=a*(-1);
+	}
+	
+	return (a%10)+sumOfDigitsRecursive(a/10);
+}
+
+L5-7
+
+void hanoi(int n,char a,char b,char c){
+	if(n>0){
+		
+	
+	hanoi(n-1,a,c,b);
+	printf("Move disk - %d from pole %c to %c\n",n,a,c);
+	hanoi(n-1,b,a,c);}
+}

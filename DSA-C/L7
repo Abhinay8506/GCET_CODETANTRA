@@ -1,0 +1,138 @@
+L7-2
+
+#include <stdio.h>
+struct student {
+	int regdno;
+	int maths_marks, c_marks, java_marks;
+	int total;
+	float avg;
+};
+void main() {
+	struct student s;
+	printf("Enter regdno, three subjects marks : ");
+	scanf("%d %d %d %d",&s.regdno,&s.maths_marks,&s.c_marks,&s.java_marks ); // Fill the code in scanf()
+	int total = s.maths_marks+s.c_marks+s.java_marks; // Complete the statement
+	float avg = total/3.0; // Complete the statement
+	printf("Total marks = %d\n",total ); // Complete the statement
+	printf("Average marks = %f\n",avg ); // Complete the statement
+}
+
+L7-3
+
+#include <stdio.h>
+struct account {
+	char name[20];
+	int acc_no;
+	float balance;
+};
+void main() {
+	struct account acc, *p;
+	p = &acc;
+	printf("Enter the name of account holder : ");
+	scanf("%s",acc.name); // Fill in the missing code
+	printf("Enter the account number : ");
+	scanf("%d",&acc.acc_no); // Fill in the missing code
+	printf("Enter the balance : ");
+	scanf("%f",&acc.balance); // Fill in the missing code
+	printf("The given account details are...\n");
+	printf("Name: %s\nAccount number: %d\nBalance: %f\n",acc.name,acc.acc_no,acc.balance); // Fill in the missing code
+}
+
+L7-4
+
+#include <stdio.h>
+#include <stdlib.h>
+struct account {
+	char name[20];
+	int acc_no;
+	float balance;
+};
+void main() {
+	struct account acc;
+	printf("Enter the name of account holder : ");
+	scanf("%s",&acc.name ); // Fill in the missing code
+	printf("Enter the account number : ");
+	scanf("%d",&acc.acc_no ); // Fill in the missing code
+	printf("Enter the balance : ");
+	scanf("%f", &acc.balance); // Fill in the missing code
+	printf("The given account details are...\n");
+	printf("Name: %s\nAccount number: %d\nBalance: %f\n",acc.name,acc.acc_no,acc.balance); // Fill in the missing code
+}
+
+L7-5
+
+#include <stdio.h>
+#include <stdlib.h>
+struct student {
+	int regdno;
+	int maths_marks, c_marks, java_marks;
+	int total;
+	float avg;
+};
+void read(struct student *, int);
+void compute(struct student *, int);
+void display(struct student *, int);
+void main() {
+	struct student *p;
+	int i, n;
+	printf("Enter number of students : ");
+	scanf("%d", &n);
+	p = (struct student *) malloc(n * sizeof(struct student));
+	read(p,n); // Fill the arguments in the function call
+	compute(p,n); // Fill the arguments in the function call
+	display(p,n); // Fill the arguments in the function call
+}
+void read(struct student *p,int n) { // Write the parameters in the function header
+	int i;
+	for (i = 0; i < n; i++) {
+		printf("Enter regdno, three subjects marks of student-%d: ", i);
+		scanf("%d %d %d %d",&(p+i)->regdno,&(p+i)->maths_marks,&(p+i)->c_marks,&(p+i)->java_marks); // Complete the statement
+	}
+}
+void compute(struct student *p,int n) { // Write the parameters in the function header
+	int i;
+	int total;
+	float avg;
+	for (i = 0; i < n; i++) {
+		(p + i)->total =(p+i)->maths_marks+(p+i)->c_marks+(p+i)->java_marks; // Complete the statement
+		(p + i)->avg = (p+i)->total/3.0; // Complete the statement
+	}
+}
+void display(struct student *p,int n) { // Write the parameters in the function header
+	int i;
+	for (i = 0; i < n; i++) {
+		printf("Student-%d Regdno = %d\tTotal marks = %d\tAverage marks = %f\n",i,(p+i)->regdno,(p+i)->total,(p+i)->avg ); // Complete the statement
+	}
+}
+
+L7-6
+
+struct list* create(struct list *first) {
+	char op;
+	struct list *q, *temp;
+	do {
+		temp =(struct list*)malloc(sizeof(struct list)) ; // Allocate memory
+		printf("Enter an integer value : ");
+		int item;
+		scanf("%d",&item); // Read data
+		temp->data=item;
+		temp -> next = NULL; // Place NULL
+		if (first == NULL) {
+			first = temp; // Assign temp to the first node
+		} else {
+			q -> next = temp; // Create a link from the last node to new node temp
+		}
+		q = temp;
+		printf("Do u want another list (y|n) : ");
+		scanf(" %c", &op);
+	} while(op == 'y' || op == 'Y');
+	return first;
+}
+void display(struct list *first) {
+	struct list *temp = first;
+	while (temp!=NULL ) { // Stop the loop where temp is NULL
+		printf("%d-->", temp->data);
+		temp =temp->next ; // Assign next of temp to temp
+	}
+	printf("NULL\n");
+}

@@ -1,0 +1,61 @@
+L12-1
+1,2
+
+L12-2
+
+struct node {
+	int data;
+	struct node * next;
+};
+typedef struct node * NODE;
+
+NODE createNodeInCLL() {
+  NODE temp=(NODE)malloc(sizeof(struct node));
+  temp->next=NULL;
+  return temp;
+}
+
+L12-3
+
+struct node {
+	int data;
+	struct node *next;
+};
+typedef struct node *NODE;
+
+NODE createNodeInCLL() {
+	NODE temp;
+	temp = (NODE) malloc(sizeof(struct node));
+	temp -> next = NULL;
+	return temp;
+}
+
+NODE addNodesInCLL(NODE first, int x) {
+	NODE temp=createNodeInCLL();
+	temp->data=x;
+	if(first==NULL){
+		first=temp;
+	}
+	else{
+		NODE t1=first;
+		while(t1->next!=first){
+			t1=t1->next;
+		}
+		t1->next=temp;
+	}
+	temp->next=first;
+	return first;
+}
+
+void traverseListInCLL(NODE first) {
+	NODE temp=first;
+	printf("%d --> ",temp->data);
+	temp=temp->next;
+	while(temp->next!=first){
+		printf("%d --> ",temp->data);
+		temp=temp->next;
+	}
+	printf("%d --> ",temp->data);
+	printf("\n");
+	
+}

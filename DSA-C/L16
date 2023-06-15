@@ -1,0 +1,170 @@
+L16-1
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node * NODE;
+
+NODE createNodeInDLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp->prev = NULL;
+	temp->next = NULL;
+	return temp;
+}
+
+NODE insertAtEndInDLL(NODE first, int x) {
+	NODE temp=createNodeInDLL();
+	temp->data=x;
+	if(first==NULL){
+		first=temp;
+	}
+	else{
+		NODE t1=first;
+		while(t1->next!=NULL){
+			t1=t1->next;
+		}
+		t1->next=temp;
+		temp->prev=t1;
+	}
+	return first;
+	
+}
+
+void traverseListInDLL(NODE first) {
+	NODE t1=first;
+	while(t1!=NULL){
+		printf("%d <--> ",t1->data);
+		t1=t1->next;
+	}
+	printf("NULL\n");
+}
+
+
+L16-2
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node * NODE;
+
+NODE createNodeInDLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp -> prev = NULL;
+	temp -> next = NULL;
+	return temp;
+}
+
+int countInDLL(NODE first) {
+	int count=0;
+	if(first==NULL){
+		return count;
+	}
+	else{
+		NODE t1=first;
+		while(t1!=NULL){
+			count++;
+			t1=t1->next;
+		}
+	}
+	return count;
+}
+
+NODE insertAtBeginInDLL(NODE first, int x) {
+	NODE temp=createNodeInDLL();
+	temp->data=x;
+	if(first==NULL){
+		first=temp;
+	}
+	else{
+		temp->next=first;
+		first->prev=temp;
+		first=temp;
+	}
+	return first;
+}
+
+void traverseListInDLL(NODE first) {
+	NODE lastNode = first;
+	while (lastNode != NULL) {
+		printf("%d <--> ", lastNode -> data);
+		lastNode = lastNode -> next;
+	}
+	printf("NULL\n");
+}
+
+L16-3
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node * NODE;
+
+NODE createNodeInDLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp->prev = NULL;
+	temp->next = NULL;
+	return temp;
+}
+
+NODE insertAtPositionInDLL(NODE first, int pos, int x) { 
+	if(pos<=0){
+		printf("No such position in DLL so insertion is not possible\n");
+		return first;
+	}
+	if(first==NULL && pos>1){
+		printf("No such position in DLL so insertion is not possible\n");
+		return first;
+	}
+	else{
+		NODE temp=createNodeInDLL();
+		temp->data=x;
+		if(pos==1){
+			if(first!=NULL){
+				temp->next=first;
+				first->prev=temp;
+				first=temp;
+			}
+			else{
+				first=temp;
+			}
+			return first;
+		}
+		int cn=1;
+		NODE t1=first;
+		while(cn<pos-1){
+			t1=t1->next;
+			cn++;
+		}
+		if(t1==NULL){
+			printf("No such position in DLL so insertion is not possible\n");
+			return first;
+		}
+		temp->next=t1->next;
+		if(t1->next!=NULL){
+			
+		t1->next->prev=temp;}
+		t1->next=temp;
+		
+		temp->prev=t1;
+		
+	}
+	return first;
+}
+
+void traverseListInDLL(NODE first) {
+	NODE lastNode = first;
+	while (lastNode != NULL) {
+		printf("%d <--> ", lastNode -> data);
+		lastNode = lastNode -> next;
+	}
+	printf("NULL\n");
+}

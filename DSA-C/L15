@@ -1,0 +1,18 @@
+L15-1
+1,4,5
+
+L15-2
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node * NODE;
+
+NODE createNodeInDLL() {
+	NODE temp=(NODE)malloc(sizeof(struct node));
+	temp->prev=NULL;
+	temp->next=NULL;
+	return temp;
+}

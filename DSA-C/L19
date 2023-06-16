@@ -1,0 +1,59 @@
+L19-1
+
+struct node{
+int data:
+struct node *prev;
+struct node *next;
+};
+typedef struct node * NODE;
+
+NODE createNodeInDCLL¢ {
+NODE temp;
+temp = (NODE) malloc(sizeof (struct node));
+temp -> prev = NULL;
+temp -> next = NULL;
+return temp;
+}
+NODE insertAtBeginInDCLL(NODE first, int ×) {
+NODE ptr-createNodeInDCLLO);
+ptr->data=x;
+NODE temp;
+if(first=-NULL){
+first=ptr;
+ptr->next-first;
+ptr->prev-first;
+}
+else{
+temp=first;
+while(temp->next!=first){
+temp=temp->next;
+} temp->next=ptr; 
+ptr->prev=temp; 
+first->prev=ptr;
+ ptr->next=first; 
+first=ptr;
+}
+return first;
+}
+
+void traverseListInDCLL(NODE first) {
+NODE lastNode = first;
+do {
+printf("% <--> " , LastNode -> data);
+lastNode = lastNode -> next;
+} while (lastNode != first);
+printf("\n");
+}
+ int countInDCLL (NODE first) {
+int count=0;
+NODE current =first;
+while(current !-NULL){
+count++;
+current=current->next;
+if(current == first){
+break;
+}}
+return count;
+}
+
+// THERE MIGHT BE FEW SYNTAX ERRORS //

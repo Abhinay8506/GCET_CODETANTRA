@@ -1,0 +1,174 @@
+L19-1
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node * NODE;
+NODE createNodeInDCLL() {
+	NODE temp;
+	temp = (NODE) malloc(sizeof(struct node));
+	temp -> prev = NULL;
+	temp -> next = NULL;
+    return temp;
+}
+
+NODE insertAtBeginInDCLL(NODE first, int x) {
+	NODE temp=createNodeInDCLL();
+	temp->data=x;
+	if(first==NULL){
+		first=temp;
+		temp->next=first;
+		temp->prev=first;
+	}
+	else{
+		NODE t1=first->next;
+		first->prev=temp;
+		temp->next=first;
+		temp->prev=t1;
+		first=temp;
+		t1->next=first;
+	}
+	return first;
+}
+
+void traverseListInDCLL(NODE first) {
+	NODE lastNode = first;
+	do {
+		printf("%d <--> ",lastNode -> data);
+		lastNode = lastNode -> next;
+	} while (lastNode != first);	
+	printf("\n");
+}
+
+int countInDCLL(NODE first) {
+	int count=0;
+	if(first==NULL){
+		return count;
+	}
+	NODE t1=first;
+	do{
+	   count++;	
+	   t1=t1->next;
+	}while(t1!=first);
+	return count;
+}
+
+
+L19-2
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node * NODE;
+
+NODE createNodeInDCLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp -> prev = NULL;
+	temp -> next = NULL;
+	return temp;
+}
+
+NODE insertAtEndInDCLL(NODE first, int x) {
+	NODE temp=createNodeInDCLL();
+	temp->data=x;
+	if(first==NULL){
+		first=temp;
+		temp->prev=first;
+		temp->next=first;
+	}
+	else{
+		NODE t1=first->prev;
+		t1->next=temp;
+		temp->prev=t1;
+		temp->next=first;
+		first->prev=temp;
+		
+	}
+	return first;
+}
+
+void traverseListInDCLL(NODE first) {
+   NODE t1=first;
+   do{
+   	  printf("%d <--> ",t1->data);
+   	  t1=t1->next;
+   }while(t1!=first);
+   printf("\n");
+}
+
+L19-3
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node *NODE;
+
+NODE createNodeInDCLL() {
+	NODE temp;
+	temp = (NODE) malloc(sizeof(struct node));
+	temp -> prev = NULL;
+	temp -> next = NULL;
+    return temp;
+}
+
+void traverseListInDCLL(NODE first) {
+	NODE lastNode = first;
+	do {
+		printf("%d <--> ",lastNode -> data);
+		lastNode = lastNode -> next;
+	} while (lastNode != first);
+	printf("\n");
+}
+
+NODE insertAtPositionInDCLL(NODE first, int pos, int x) {
+	NODE temp=createNodeInDCLL();
+	NODE t=first,t2;
+	temp->data=x;
+	if(pos<0 || (first==NULL && pos>1)){
+		printf("No such position in DCLL so insertion is not possible\n");
+	}
+    else{
+    
+	
+	for(int i=1;i<pos-1;i++){
+		if(t->next==first){
+			printf("No such position in DCLL so insertion is not possible\n");
+			return first;
+		}
+		t2=t->next;
+		t=t->next;
+	}
+	if(pos==1){
+		if(first==NULL){
+			first=temp;
+			temp->next=first;
+			temp->prev=first;
+		}
+		else{
+			while(t->next!=first)
+			t=t->next;
+			temp->next=first;
+			temp->prev=t;
+			t->next=temp;
+			first=temp;
+		}
+	}
+	else
+	{
+	temp->next=t->next;
+	temp->prev=t;
+	t->next=temp;
+	t2->prev=temp;
+	}
+   }
+	return first;
+	
+	
+}

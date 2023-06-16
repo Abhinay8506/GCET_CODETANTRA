@@ -1,0 +1,283 @@
+L17-1
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node * NODE;
+
+NODE createNodeInDLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp->prev = NULL;
+	temp->next = NULL;
+	return temp;
+}
+
+NODE insertAtBeginInDLL(NODE first, int x) {
+	NODE temp=createNodeInDLL();
+	temp->data=x;
+	if(first==NULL){
+		first=NULL;
+	}
+	else{
+		temp->next=first;
+		first->prev=temp;
+		first=temp;
+	}
+	return temp;
+}
+
+NODE deleteAtBeginInDLL(NODE first) {
+	NODE lastnode=first;
+	if(first->next==NULL){
+		first=NULL;
+	}
+	else{
+		
+	
+	first->next->prev=NULL;
+	first=first->next;
+	}
+	printf("The deleted element from DLL : %d\n",lastnode->data);
+	free(lastnode);
+	return first;
+}
+
+void traverseListInDLL(NODE first) {
+	NODE lastNode = first;
+	while (lastNode != NULL) {
+		printf("%d <--> ", lastNode -> data);
+		lastNode = lastNode -> next;
+	}
+	printf("NULL\n");
+}
+
+L17-2
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node * NODE;
+
+NODE createNodeInDLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp->prev = NULL;
+	temp->next = NULL;
+	return temp;
+}
+
+NODE insertAtEndInDLL(NODE first, int x) {
+	NODE temp=createNodeInDLL();
+	temp->data=x;
+	if(first==NULL){
+		first=temp;
+		return first;
+	}
+	NODE t1=first;
+	while(t1->next!=NULL)
+	{
+		t1=t1->next;
+	}
+	t1->next=temp;
+	temp->prev=t1;
+	return first;
+	
+}
+
+NODE deleteAtEndInDLL(NODE first) {
+	NODE t2=first;
+	if(t2->next==NULL){
+		first=NULL;
+		printf("The deleted element from DLL : %d\n",t2->data);
+		free(t2);
+		return first;
+	}
+	else{
+		NODE t1=NULL;
+		
+		while(t2->next!=NULL){
+			t1=t2;
+			t2=t2->next;
+		}
+		t1->next=NULL;
+		t2->prev=NULL;
+		printf("The deleted element from DLL : %d\n",t2->data);
+		free(t2);
+		return first;
+	}
+	
+	
+}
+
+void traverseListInDLL(NODE first) {
+	NODE lastNode = first;
+	while (lastNode != NULL) {
+		printf("%d <--> ", lastNode -> data);
+		lastNode = lastNode -> next;
+	}
+	printf("NULL\n");
+}
+
+L17-3
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node * NODE;
+
+NODE createNodeInDLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp->prev = NULL;
+	temp->next = NULL;
+	return temp;
+}
+
+void traverseListInDLL(NODE first) {
+	NODE lastNode = first;
+	while (lastNode != NULL) {
+		printf("%d <--> ", lastNode -> data);
+		lastNode = lastNode -> next;
+	}
+	printf("NULL\n");
+}
+
+NODE insertAtEndInDLL(NODE first, int x) {
+	NODE temp=createNodeInDLL();
+	temp->data=x;
+	if(first==NULL)
+	{
+		first=temp;
+		return first;
+		
+    }
+    NODE t1=first;
+    while(t1->next!=NULL){
+    	t1=t1->next;
+    }
+    t1->next=temp;
+    temp->prev=t1;
+    return first;
+}
+
+NODE deleteAtPositionInDLL(NODE first, int pos) { 
+	if(pos<=0){
+		printf("No such position in DLL so deletion is not possible\n");
+		return first;
+	}
+	if(pos>1 && first==NULL){
+		printf("No such position in DLL so deletion is not possible\n");
+		return first;
+	}
+	if(pos==1){
+		NODE temp=first;
+		if(first!=NULL){
+			first=first->next;
+			first->prev=NULL;
+			temp->next=NULL;
+			printf("The deleted element from DLL : %d\n",temp->data);
+			free(temp);
+			return first;
+			
+		}
+		else{
+			printf("No such position in DLL so deletion is not possible\n");
+		}
+	}
+	else
+	{
+		int cn=1;
+		NODE t1=NULL;
+		NODE t2=first;
+		while(cn<=pos-1){
+			t1=t2;
+			t2=t2->next;
+			cn++;
+		}
+		if(t2==	NULL){
+			printf("No such position in DLL so deletion is not possible\n");
+			return first;
+		}
+		t1->next=t2->next;
+		if(t2->next!=NULL){
+			
+		
+		t1->next->prev=t1;
+		}
+		t2->prev=NULL;
+		t2->next=NULL;
+		printf("The deleted element from DLL : %d\n",t2->data);
+		free(t2);
+		return first;
+	}
+}
+
+L17-4
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+
+typedef struct node * NODE;
+
+NODE createNodeInDLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp->prev = NULL;
+	temp->next = NULL;
+	return temp;
+}
+
+void traverseListInDLL(NODE first) {
+	NODE lastNode = first;
+	while (lastNode != NULL) {
+		printf("%d <--> ", lastNode -> data);
+		lastNode = lastNode -> next;
+	}
+	printf("NULL\n");
+}
+
+NODE insertAtBeginInDLL(NODE first, int x) {
+	NODE temp=createNodeInDLL();
+	temp->data=x;
+	if(first==NULL)
+	{
+	  first=temp;	
+	}
+	else{
+		temp->next=first;
+		first->prev=temp;
+		first=temp;
+	}
+	return first;
+}
+int searchPosOfEleInDLL(NODE first, int element) { 
+	int count=0;
+	NODE curr=first;
+	if(first==NULL){
+		return count;
+	}
+	else
+	{
+		while(curr->next!=NULL && curr->data!=element){
+			
+			curr=curr->next;
+			count++;
+		}
+		if(curr->data==element){
+			return count+1;
+		}
+		return 0;
+	}
+	
+}
+

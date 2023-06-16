@@ -1,0 +1,67 @@
+L18-2
+
+struct node {
+	int data;
+    struct node*prev;
+    struct node*next;
+    
+};
+typedef struct node *NODE;
+
+NODE createNodeInDCLL() {
+  NODE temp=(NODE)malloc(sizeof(struct node));
+  temp->next=NULL;
+  temp->prev=NULL;
+  return temp;
+}
+
+L18-3
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node * NODE;
+
+NODE createNodeInDCLL() {
+	NODE temp;
+	temp = (NODE) malloc(sizeof(struct node));
+	temp -> prev = NULL;
+	temp -> next = NULL;
+    return temp;
+}
+
+NODE addNodesInDCLL(NODE first, int x) {
+	NODE temp=createNodeInDCLL();
+	temp->data=x;
+	if(first==NULL){
+		first=temp;
+		temp->next=first;
+		temp->prev=first;
+	}
+	if(first->next==first){
+		first->next=temp;
+		temp->prev=first;
+		temp->next=first;
+		first->prev=temp;
+	}
+	else{
+		NODE t=first->prev;
+	    t->next=temp;
+	    temp->prev=t;
+		temp->next=first;
+		first->prev=temp;
+	}
+	return first;
+}
+
+void traverseListInDCLL(NODE first) {
+    NODE temp=first;
+    do{
+    	printf("%d <--> ",temp->data);
+    	temp=temp->next;
+    }while(temp!=first);
+    printf("\n");
+  
+}

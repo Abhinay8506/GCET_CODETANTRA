@@ -1,0 +1,55 @@
+struct node {
+	char name[10];
+	struct node *next;
+};
+typedef struct node *NODE;
+NODE first = NULL;
+
+NODE createNode() {
+	NODE temp;
+	temp = (NODE) malloc(sizeof(struct node));
+	temp -> next = NULL;
+	return temp;
+}
+
+NODE addNodes(NODE last, char sname[]) {
+	NODE temp;
+	temp = createNode();
+	strcpy(temp -> name, sname);
+	if (first == NULL) {
+		first = temp;
+	} else {
+		last -> next = temp;
+	}
+	temp -> next = first;
+	return temp;
+}
+
+void print() {
+	NODE q = first;
+	do {
+		printf("%s --> ", q -> name);
+		q = q -> next;
+	} while(q != first);
+	printf("NULL\n");
+}	
+
+void performJosephus(NODE last) {
+	int k;
+	printf("Enter a value : ");
+	scanf("%d",&k);
+	NODE t1=first,t2;
+	while(t1!=t1->next){
+		for(int i=1;i<k;i++)
+		{	
+		   t2=t1;
+		   t1=t1->next;
+		}
+		t2->next=t1->next;
+		printf("The eliminated soldier is : %s\n",t1->name);
+		free(t1);
+		t1=t2->next;
+	}
+	printf("The escaped soldier is : %s\n",t1->name);
+	
+}

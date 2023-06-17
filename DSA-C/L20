@@ -1,0 +1,299 @@
+L20-1
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node *NODE;
+
+NODE createNodeInDCLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp->prev = NULL;
+	temp->next = NULL;
+	return temp;
+}
+
+NODE insertAtBeginInDCLL(NODE first, int x) {
+	NODE temp=createNodeInDCLL();
+	temp->data=x;
+	if(first==NULL){
+		first=temp;
+		temp->next=first;
+		temp->prev=first;
+	}
+	else{
+		if(first->next==first){
+			temp->next=first;
+			temp->prev=first;
+			first->prev=temp;
+			first->next=temp;
+			first=temp;
+		}
+		else{
+			NODE t1=first->prev;
+			t1->next=temp;
+			temp->prev=t1;
+			temp->next=first;
+			first->prev=temp;
+			first=temp;
+		}
+		
+	}
+	return first;
+}
+	
+
+NODE deleteAtBeginInDCLL(NODE first) {
+	NODE lastnode=first,temp=first;
+	if(temp->next==first){
+		first=NULL;
+	}
+	else{
+		lastnode=first->prev;
+		first=first->next;
+		first->prev=lastnode;
+		lastnode->next=first;
+	}
+	printf("The deleted element from DCLL : %d\n",temp->data);
+	free(temp);
+	return first;
+}
+
+void traverseListInDCLL(NODE first) {
+	NODE lastNode = first;
+	do {
+		printf("%d <--> ",lastNode -> data);
+		lastNode = lastNode -> next;
+	} while (lastNode!= first);	
+	printf("\n");
+}
+
+L20-2
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node *NODE;
+
+NODE createNodeInDCLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp -> prev = NULL;
+	temp -> next = NULL;
+	return temp;
+}
+
+NODE insertAtEndInDCLL(NODE first, int x) {
+	NODE temp=createNodeInDCLL();
+	temp->data=x;
+	if(first==NULL){
+		first=temp;
+		temp->next=first;
+		temp->prev=first;
+	}
+	else{
+		if(first->next==first){
+			first->next=temp;
+			temp->prev=first;
+			temp->next=first;
+			first->prev=temp;
+		}
+		else{
+			NODE t1=first->prev;
+			t1->next=temp;
+			temp->prev=t1;
+			temp->next=first;
+			first->prev=temp;
+		}
+	}
+	return first;
+}
+
+NODE deleteAtEndInDCLL(NODE first) { 
+	NODE temp=first;
+	
+	if(temp->next==first){
+		first=NULL;
+	}
+	else{
+		
+		temp=first->prev;
+		NODE lastnode=temp->prev;
+		lastnode->next=first;
+		first->prev=lastnode;
+	}
+	printf("The deleted element from DCLL : %d\n",temp->data);
+	free(temp);
+	return first;
+}
+
+void traverseListInDCLL(NODE first) {
+	NODE lastNode = first;
+	do {
+		printf("%d <--> ", lastNode -> data);
+		lastNode = lastNode -> next;
+	} while (lastNode != first);	
+	printf("\n");
+}
+
+L20-3
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node *NODE;
+
+NODE createNodeInDCLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp -> prev = NULL;
+	temp -> next = NULL;
+	return temp;
+}
+
+void traverseListInDCLL(NODE first) {
+	NODE lastNode = first;
+	do {
+		printf("%d <--> ",lastNode -> data);
+		lastNode = lastNode -> next;
+	} while (lastNode != first);	
+	printf("\n");
+}
+
+NODE deleteAtPositionInDCLL(NODE first, int pos) {
+	NODE temp=first;
+	NODE lastnode=first;
+	if(pos==0){
+		printf("No such position in DCLL so deletion is not possible\n");
+		return first;
+	}
+	if(pos==1){
+		if(temp->next==first){
+			first=NULL;
+		}
+		else{
+			while(lastnode->next!=first)
+			lastnode=lastnode->next;
+			first=first->next;
+			lastnode->next=first;
+			first->prev=lastnode;
+		}
+	}
+	else{
+		for(int i=1;i<pos;i++){
+			lastnode=temp;
+		    if(temp->next==first){
+			printf("No such position in DCLL so deletion is not possible\n");
+	 		return first;
+	    	}
+		    temp=temp->next;
+		}
+		lastnode->next=temp->next;
+		temp->next->prev=lastnode;
+	}
+	printf("The deleted element from DCLL : %d\n",temp->data);
+	free(temp);
+	return first;
+}
+
+NODE insertAtEndInDCLL(NODE first, int x) {
+	NODE temp=createNodeInDCLL();
+	temp->data=x;
+	if(first==NULL){
+		first=temp;
+		temp->next=first;
+		temp->prev=first;
+		first->prev=temp;
+	}
+	else{
+		if(first->next==first)
+		{
+			first->next=temp;
+			temp->prev=first;
+			temp->next=first;
+			first->prev=temp;
+		}
+		else{
+			NODE t1=first->prev;
+			t1->next=temp;
+			temp->prev=t1;
+			temp->next=first;
+			first->prev=temp;
+		}
+	}
+	return first;
+}
+
+L20-4
+
+struct node {
+	int data;
+	struct node *prev;
+	struct node *next;
+};
+typedef struct node *NODE;
+
+NODE createNodeInDCLL() {
+	NODE temp;
+	temp = (NODE)malloc(sizeof(struct node));
+	temp->prev = NULL;
+	temp->next = NULL;
+	return temp;
+}
+
+void traverseListInDCLL(NODE first) {
+	NODE lastNode = first;
+	do {
+		printf("%d <--> ",lastNode -> data);
+		lastNode = lastNode -> next;
+	} while (lastNode != first);	
+	printf("\n");
+}
+
+NODE insertAtBeginInDCLL(NODE first, int x) {
+	NODE temp=createNodeInDCLL();
+	temp->data=x;
+	if(first==NULL){
+		first=temp;
+		temp->next=first;
+		temp->prev=first;
+	}
+	else{
+		NODE t1=first->prev;
+		first->prev=temp;
+		temp->next=first;
+		temp->prev=t1;
+		first=temp;
+		t1->next=first;
+	}
+	return first;
+}
+
+int searchPosOfEleInDCLL(NODE first, int key) {
+	int count=0;
+	NODE t1=first;
+	if(first==NULL){
+		return count;
+	}
+	else{
+	while(t1->data!=key){
+		if(t1->next==first){
+		    return 0;	
+		}
+		else{
+			
+		
+		count++;
+			
+		}
+		t1=t1->next;
+	}
+	}
+	return count+1;
+}

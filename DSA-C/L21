@@ -1,0 +1,108 @@
+L21-2
+
+void create(int arr[max + 1], int power) {
+	 int t=power;
+     while(t>=0){
+     	printf("Enter coeff value for %d degree term : ",t);
+     	scanf("%d",&arr[t]);
+     	t--;
+     	
+     }
+}
+void print(int arr[max + 1], int power) {
+	int t=power;
+    while(t>=0){
+    	printf("%d X^ %d --> ",arr[t],t);
+    	t--;
+    }
+    printf("NULL\n");
+}
+
+L21-3
+
+void create(int arr[max + 1], int power) {
+	int t=power;
+	while(t>=0){
+		printf("Enter coeff value for %d degree term : ",t);
+		scanf("%d",&arr[t]);
+		t--;
+	}
+}
+
+void add(int head1[max + 1], int hpow1, int head2[max + 1], int hpow2, int polyAdd[max + 1], int *hpow3) {
+	if(hpow1>hpow2){
+		*hpow3=hpow1;
+	}
+	else{
+		*hpow3=hpow2;
+	}
+	for(int i=0;i<=*hpow3;i++){
+		polyAdd[i]=head1[i]+head2[i];
+	}
+}
+
+void print(int arr[max + 1], int power) {
+	int i;
+	for (i = power; i >= 0; i--) {
+		printf("%d X^%d  ", arr[i], i);
+	}
+	printf("\n");
+}
+
+L21-4
+
+void create(int arr[max + 1], int power) {
+	int i=power;
+	while(i>=0){
+		printf("Enter coeff value for %d degree term : ",i);
+		scanf("%d",&arr[i]);
+		i--;
+	}
+}
+
+void sub(int head1[max + 1], int hpow1, int head2[max + 1], int hpow2, int polySub[max + 1], int *hpow3) {
+	if(hpow1>hpow2){
+		*hpow3=hpow1;
+	}
+	else{
+		*hpow3=hpow2;
+	}
+	for(int i=0;i<=*hpow3;i++){
+		polySub[i]=head1[i]-head2[i];
+	}
+}
+
+void print(int arr[max + 1], int power) {
+	int i;
+	for (i = power; i >= 0; i--) {
+		printf("%d X^%d  ", arr[i], i);
+	}
+	printf("\n");
+}
+
+L21-5
+
+void create(int arr[max + 1], int power) {
+	int i=power;
+	while(i>=0){
+		printf("Enter coeff value for %d degree term : ",i);
+		scanf("%d",&arr[i]);
+		i--;
+	}
+}
+
+void multiply(int head1[max + 1], int hpow1, int head2[max + 1], int hpow2, int polyMul[max + 1]) {
+	for(int i=0;i<=hpow1;i++){
+		for(int j=0;j<=hpow2;j++){
+			polyMul[i+j]+=head1[i]*head2[j];
+		}
+	}
+}
+
+void print(int arr[max + 1], int power) {
+	int i;
+	for (i = power; i >= 0; i--) {
+		printf("%d X^%d  ", arr[i], i);
+	}
+	printf("\n");
+}

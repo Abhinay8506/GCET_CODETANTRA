@@ -1,0 +1,155 @@
+L25-2
+
+#define STACK_MAX_SIZE 10
+
+int arr[STACK_MAX_SIZE];
+int top = -1;
+
+void push(int element) {
+	if(top==STACK_MAX_SIZE-1){
+		printf("Stack is overflow.\n");
+		return ;
+	}else{
+		top++;
+		arr[top]=element;
+		printf("Successfully pushed.\n");
+	}
+}
+
+void display() {
+	if(top<0)
+	{
+		printf("Stack is empty.\n");
+		return ;
+	}
+	else{
+		printf("Elements of the stack are : ");
+		for(int i=top;i>=0;i--){
+			printf("%d ",arr[i]);
+		}
+		printf("\n");
+	}
+}
+
+L25-3
+
+#include <stdio.h>
+#include <stdlib.h>
+#define STACK_MAX_SIZE 10
+
+int arr[STACK_MAX_SIZE];
+int top = -1;
+
+void pop() {
+	if(top<0){
+		printf("Stack is underflow.\n");
+		return ;
+	}
+	else{
+		int x=arr[top];
+		top--;
+		printf("Popped value = %d\n",x);
+	}
+}
+
+void peek() {
+	if(top<0){
+		printf("Stack is underflow.\n");
+		return ;
+	}
+	else{
+		int x=arr[top];
+		printf("Peek value = %d\n",x);
+	}
+}
+
+void isEmpty() {
+	if(top<0){
+		printf("Stack is empty.\n");
+	}
+	else{
+		printf("Stack is not empty.\n");
+	}
+}
+
+void push(int element) {
+	if(top == STACK_MAX_SIZE - 1) {
+		printf("Stack is overflow.\n");
+	} else {
+		top = top + 1;
+		arr[top] = element;
+		printf("Successfully pushed.\n");
+	}
+}
+
+void display() {
+	if (top < 0) {
+		printf("Stack is empty.\n");
+	} else {
+		printf("Elements of the stack are : " );
+		for(int i = top; i >= 0; i--) {
+			printf("%d ",arr[i]);
+		}
+		printf("\n");
+	}
+}
+
+L25-4
+
+
+int top=-1;
+int arr[STACK_MAX_SIZE];
+void push(int x){
+	if(top==STACK_MAX_SIZE-1){
+		printf("Stack is overflow.\n");
+		return ;
+	}
+	else{
+		top++;
+		arr[top]=x;
+		printf("Successfully pushed.\n");
+		
+	}
+}
+void pop(){
+	if(top<0){
+		printf("Stack is underflow.\n");
+		return ;
+	}
+	else{
+		printf("Popped value = %d\n",arr[top]);
+		top--;
+	}
+}
+void display(){
+	if(top<0){
+		printf("Stack is empty.\n");
+		return ;
+	}
+	else{
+		printf("Elements of the stack are : ");
+		for(int i=top;i>=0;i--){
+			printf("%d ",arr[i]);
+			
+		}
+		printf("\n");
+	}
+}
+void isEmpty(){
+    if(top<0){
+    	printf("Stack is empty.\n");
+    	return ;
+    }
+    else{
+    	printf("Stack is not empty.\n");
+    }
+}
+void peek(){
+	if(top<0){
+		printf("Stack is underflow.\n");
+		return ;
+	}
+	else{
+		printf("Peek value = %d\n",arr[top]);
+	}
+}

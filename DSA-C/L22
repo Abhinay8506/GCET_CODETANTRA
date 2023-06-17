@@ -1,0 +1,316 @@
+L22-2
+
+struct polynomial {
+	int coeff;
+	int exp;
+	struct polynomial *next;
+};
+typedef struct polynomial *poly;
+
+poly addTerm(poly head, poly temp) {
+	poly p1,p2;
+	p1=p2=head;
+	if(p1==NULL){
+		head=temp;
+	}
+    else
+    {  
+       while(p1!=NULL&&p1->exp>temp->exp){
+    	  p2=p1;
+    	  p1=p1->next;
+       }if(p1==NULL)
+       {
+       	p2->next=temp;
+       }
+       else if(p1->exp==temp->exp)
+       {
+       	 p1->coeff=p1->coeff+temp->coeff;
+       }
+       else if(p1->exp<temp->exp){
+       	 if(p1==p2){
+       	 	temp->next=p1;
+       	 	head=temp;
+       	 }
+       	 else{
+       	 	temp->next=p1;
+       	 	p2->next=temp;
+       	 }
+       }
+    	
+    	
+    }	
+    return head;
+}
+
+void print(poly head) {
+	 poly t=head;
+     while(t!=NULL){
+     	printf("%d X^ %d ---> ",t->coeff,t->exp);
+     	t=t->next;
+     }
+     printf("NULL\n");
+}
+
+
+L22-3
+
+struct polynomial {
+	int coeff;
+	int exp;
+	struct polynomial *next;
+};
+typedef struct polynomial *poly;
+
+poly addTerm(poly head, poly temp) {
+	poly p1,p2;
+	p1=p2=head;
+	if(p1==NULL){
+		head=temp;
+	}
+	else{
+		while(p1!=NULL	&& p1->exp>temp->exp){
+			p2=p1;
+			p1=p1->next;
+		}if(p1==NULL){
+			p2->next=temp;
+		}else if(p1->exp==temp->exp){
+			p1->coeff=p1->coeff+temp->coeff;
+		}
+		else if(p1->exp<temp->exp){
+			if(p1==p2){
+				temp->next=p1;
+				head=temp;
+			}
+			else{
+				temp->next=p1;
+				p2->next=temp;
+			}
+		}
+	}
+	return head;
+}
+void print(poly head) 
+{
+	poly temp = head;
+	while(temp != NULL) {
+		printf("%d X^ %d ---> ", temp -> coeff, temp -> exp);
+		temp = temp -> next;
+	}
+	printf("NULL\n");
+}
+
+poly add(poly head1, poly head2) {
+	poly t1=head1,t2=head2,temp=NULL,adds=NULL;
+	if(t1==NULL){
+		return head1;
+	}
+	else if(t2==NULL){
+		return head2;
+	}
+	else{
+	while(t1!=NULL && t2!=NULL){
+		temp=(poly)malloc(sizeof(struct polynomial));
+		if(t1->exp==t2->exp)
+		{ 
+           temp->coeff=t1->coeff+t2->coeff;
+           temp->exp=t1->exp;
+           temp->next=NULL;
+           adds=addTerm(adds,temp);
+           t1=t1->next;
+           t2=t2->next;
+		}
+		else if(t1->exp>t2->exp){
+			temp->coeff=t1->coeff;
+			temp->exp=t1->exp;
+			temp->next=NULL;
+			adds=addTerm(adds,temp);
+			t1=t1->next;
+		}
+		else{
+			temp->coeff=t2->coeff;
+			temp->exp=t2->exp;
+			temp->next=NULL;
+			adds=addTerm(adds,temp);
+			t2=t2->next;
+		}
+	}
+	while(t1!=NULL){
+		temp=(poly)malloc(sizeof(struct polynomial));
+		temp->coeff=t1->coeff;
+		temp->exp=t1->exp;
+		temp->next=NULL;
+		adds=addTerm(adds,temp);
+		t1=t1->next;
+	}
+	while(t2!=NULL){
+		temp=(poly)malloc(sizeof(struct polynomial));
+		temp->coeff=t2->coeff;
+		temp->exp=t2->exp;
+		temp->next=NULL;
+		adds=addTerm(adds,temp);
+		t2=t2->next;
+	}
+	return adds;
+		
+	}
+}
+
+L22-4
+
+struct polynomial {
+	int coeff;
+	int exp;
+	struct polynomial *next;
+};
+typedef struct polynomial *poly;
+
+poly addTerm(poly head, poly temp) {
+	poly  p1,p2;
+	p1=p2=head;
+	if(p1==NULL){
+		head=temp;
+	}
+	else{
+		while(p1!=NULL && p1->exp >temp->exp){
+			p2=p1;
+			p1=p1->next;
+			
+		}
+		if(p1==NULL)
+		{
+			p2->next=temp;
+		}
+		else if(p1->exp == temp->exp){
+			p1->coeff=p1->coeff+temp->coeff;
+		}
+		else if(p1->exp<temp->exp){
+			if(p1==p2){
+				temp->next=p1;
+				head=temp;
+			}else{
+				temp->next=p1;
+				p2->next=temp;
+			}
+		}
+	}
+	return head;
+}
+
+void print(poly head) {
+	poly temp = head;
+	while(temp != NULL) {
+		printf("%d X^ %d ---> ", temp -> coeff, temp -> exp);
+		temp = temp -> next;
+	}
+	printf("NULL\n");
+}
+
+poly sub(poly head1, poly head2) {
+	poly t1=head1,t2=head2;
+	poly subs=NULL,temp=NULL;
+	while(t1!=NULL && t2!=NULL){
+		temp=(poly)malloc(sizeof(struct polynomial));
+		if(t1->exp==t2->exp){
+			temp->coeff=t1->coeff-t2->coeff;
+			temp->exp=t1->exp;
+			temp->next=NULL;
+			subs=addTerm(subs,temp);
+			t1=t1->next;
+			t2=t2->next;
+		}
+		else if(t1->exp>t2->exp){
+			temp->coeff=t1->coeff;
+			temp->exp=t1->exp;
+			temp->next=NULL;
+			subs=addTerm(subs,temp);
+			t1=t1->next;
+		}
+		else{
+			temp->coeff=-1*(t2->coeff);
+			temp->exp=t2->exp;
+			temp->next=NULL;
+			subs=addTerm(subs,temp);
+			t1=t1->next;
+		}
+	}
+	while(t1!=NULL){
+		temp=(poly)malloc(sizeof(struct polynomial));
+		temp->coeff=t1->coeff;
+		temp->exp=t1->exp;
+		temp->next=NULL;
+		subs=addTerm(subs,temp);
+		t1=t1->next;
+	}
+	while(t2!=NULL){
+		temp=(poly)malloc(sizeof(struct polynomial));
+		temp->coeff=-1*(t2->coeff);
+		temp->exp=t2->exp;
+		temp->next=NULL;
+		subs=addTerm(subs,temp);
+		t2=t2->next;
+	}
+	return subs;
+}
+
+L22-5
+
+struct polynomial {
+	int coeff;
+	int exp;
+	struct polynomial *next;
+};
+typedef struct polynomial *poly;
+
+poly addTerm(poly head, poly temp) {
+	poly t1=head,t2=head;
+	if(t1==NULL){
+		head=temp;
+	}
+	else{
+	   while(t1!=NULL && t1->exp>temp->exp){
+	   	   t2=t1;
+	   	   t1=t1->next;
+	   }
+	   if(t1==NULL){
+	   	t2->next=temp;
+	   }
+	   else if(t1->exp==temp->exp){
+	   	t1->coeff=t1->coeff+temp->coeff;
+	   }
+	   else if(t1->exp<temp->exp){
+	   	if(t1==t2){
+	   	  temp->next=head;
+	   	  head=temp;
+	   	}
+	   	else{
+	   		temp->next=t1;
+	   		t2->next=temp;
+	   	}
+	   }
+	}
+	return head;
+}
+
+void print(poly head) {
+	poly temp = head;
+	while(temp != NULL) {
+		printf("%d X^ %d ---> ", temp -> coeff, temp -> exp);
+		temp = temp -> next;
+	}
+	printf("NULL\n");
+}
+
+poly mul(poly head1, poly head2) {
+	poly t1,t2;
+	poly abh=NULL,temp=NULL;
+	for(t1=head1;t1!=NULL;t1=t1->next){
+		for(t2=head2;t2!=NULL;t2=t2->next){
+			temp=(poly)malloc(sizeof(poly));
+			temp->coeff=t1->coeff*t2->coeff;
+			temp->exp=t1->exp+t2->exp;
+			temp->next=NULL;
+			abh=addTerm(abh,temp);
+		}
+	}
+	return abh;
+}
